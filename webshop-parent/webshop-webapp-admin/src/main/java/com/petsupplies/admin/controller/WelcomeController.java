@@ -5,7 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.petsupplies.service.IUserService;
+import com.petsupplies.service.user.IUserService;
 
 @Controller
 public class WelcomeController {

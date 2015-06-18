@@ -1,4 +1,4 @@
-package com.petsupplies.service;
+package com.petsupplies.service.user;
 
 import java.util.List;
 
@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.petsupplies.model.user.User;
-import com.petsupplies.repository.UserRepository;
+import com.petsupplies.repository.user.UserRepository;
 
 @Service("userService")
 @Transactional

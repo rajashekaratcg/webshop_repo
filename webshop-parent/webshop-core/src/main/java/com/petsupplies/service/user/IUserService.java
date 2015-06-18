@@ -1,4 +1,4 @@
-package com.petsupplies.service;
+package com.petsupplies.service.user;
 
 import java.util.List;
 

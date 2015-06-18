@@ -1,4 +1,4 @@
-package com.petsupplies.repository;
+package com.petsupplies.repository.user;
 
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.stereotype.Repository;
