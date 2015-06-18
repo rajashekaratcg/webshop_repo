@@ -18,3 +18,8 @@ body {
 .theme-showcase .navbar .container {
   width: auto;
 }
+
+.error {
+	color: red;
+	font-weight: bold;
+}

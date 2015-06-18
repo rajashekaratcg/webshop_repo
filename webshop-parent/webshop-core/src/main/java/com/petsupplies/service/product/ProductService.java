@@ -11,30 +11,38 @@ import com.petsupplies.model.product.Product;
 import com.petsupplies.repository.product.ProductRepository;
 
 @Service("productService")
-@Transactional
 public class ProductService implements IProductService {
 
-   @Autowired
-   private ProductRepository productRepository;
+	@Autowired
+	private ProductRepository productRepository;
 
-   @Override
-   public Page<Product> findAll(Pageable result) {
-      return productRepository.findAll(result);
-   }
+	@Override
+	public Page<Product> findAll(Pageable result) {
+		return productRepository.findAll(result);
+	}
 
-   @Override
-   public Product create(Product product) {
-      return productRepository.save(product);
-   }
+	@Override
+	@Transactional
+	public Product create(Product product) {
+		product.setId(null);		
+		return productRepository.save(product);
+	}
 
-   @Override
-   public void delete(Long id) {
-      productRepository.delete(id);
-   }
+	@Override
+	@Transactional
+	public void delete(Long id) {
+		productRepository.delete(id);
+	}
 
-   @Override
-   public Product findById(Long id) {
-      return productRepository.findOne(id);
-   }
+	@Override
+	public Product findById(Long id) {
+		return productRepository.findOne(id);
+	}
+
+	@Override
+	@Transactional
+	public Product update(Product product) {
+		return productRepository.save(product);
+	}
 
 }

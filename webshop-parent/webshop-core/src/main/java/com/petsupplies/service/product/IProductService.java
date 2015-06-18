@@ -7,11 +7,13 @@ import com.petsupplies.model.product.Product;
 
 public interface IProductService {
 
-   Page<Product> findAll(Pageable result);
+	Page<Product> findAll(Pageable result);
 
-   Product create(Product product);
+	Product create(Product product);
 
-   void delete(Long id);
+	void delete(Long id);
 
-   Product findById(Long id);
+	Product findById(Long id);
+
+	Product update(Product product);
 }

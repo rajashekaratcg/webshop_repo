@@ -13,6 +13,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.hibernate.validator.constraints.NotBlank;
+
 import com.google.common.collect.Lists;
 import com.petsupplies.model.product.Product;
 
@@ -24,6 +26,7 @@ public class Category {
    @GeneratedValue(strategy = GenerationType.AUTO)
    private Long id;
    
+   @NotBlank
    @Column(length=100)
    private String name;
 
