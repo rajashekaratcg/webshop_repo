@@ -10,14 +10,15 @@
 	<mvc:annotation-driven />
 	<context:component-scan base-package="com.petsupplies" />
 
- 	<mvc:resources location="/styles/" mapping="styles/**" />
+	<mvc:resources location="/styles/" mapping="styles/**" />
 	<mvc:resources location="/scripts/" mapping="scripts/**" />
 
 	<bean id="messageSource"
 		class="org.springframework.context.support.ResourceBundleMessageSource"
 		p:basename="message" />
 	<mvc:interceptors>
-		<bean class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor" p:paramName="lang" />
+		<bean class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor"
+			p:paramName="lang" />
 	</mvc:interceptors>
 	<bean id="localeResolver"
 		class="org.springframework.web.servlet.i18n.SessionLocaleResolver"

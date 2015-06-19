@@ -14,8 +14,9 @@ import com.google.common.collect.Lists;
 import com.petsupplies.model.user.User;
 
 @Entity
-@Table(name="ROLES")
-public class Role {
+@Table(name = "ROLES")
+public class Role
+{
 
    @Id
    @GeneratedValue(strategy = GenerationType.AUTO)
@@ -24,35 +25,42 @@ public class Role {
    @Column(length = 100)
    private String name;
 
-   @ManyToMany(mappedBy="roles")
-   public List<User> users = Lists.newArrayList();  
-   
-   public Role() {
+   @ManyToMany(mappedBy = "roles")
+   public List<User> users = Lists.newArrayList();
+
+   public Role()
+   {
 
    }
 
-   public Long getId() {
+   public Long getId()
+   {
       return id;
    }
 
-   public void setId(Long id) {
+   public void setId(Long id)
+   {
       this.id = id;
    }
 
-   public String getName() {
+   public String getName()
+   {
       return name;
    }
 
-   public void setName(String name) {
+   public void setName(String name)
+   {
       this.name = name;
-   }   
-   
-   public List<User> getUsers() {
+   }
+
+   public List<User> getUsers()
+   {
       return users;
    }
 
    @Override
-   public int hashCode() {
+   public int hashCode()
+   {
       final int prime = 31;
       int result = 1;
       result = prime * result + ((name == null) ? 0 : name.hashCode());
@@ -60,29 +68,38 @@ public class Role {
    }
 
    @Override
-   public boolean equals(Object obj) {
-      if (this == obj) {
+   public boolean equals(Object obj)
+   {
+      if (this == obj)
+      {
          return true;
       }
-      if (obj == null) {
+      if (obj == null)
+      {
          return false;
       }
-      if (getClass() != obj.getClass()) {
+      if (getClass() != obj.getClass())
+      {
          return false;
       }
       Role other = (Role) obj;
-      if (name == null) {
-         if (other.name != null) {
+      if (name == null)
+      {
+         if (other.name != null)
+         {
             return false;
          }
-      } else if (!name.equals(other.name)) {
+      }
+      else if (!name.equals(other.name))
+      {
          return false;
       }
       return true;
    }
 
    @Override
-   public String toString() {
+   public String toString()
+   {
       StringBuilder builder = new StringBuilder();
       builder.append("Role [id=");
       builder.append(id);

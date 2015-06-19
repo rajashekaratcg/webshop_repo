@@ -18,16 +18,6 @@ public class WelcomeController {
 
 		model.addAttribute("welcome", "Hello World!");
 		
-/*		User user = new User();
-		user.setEmail("raj@cg.com");
-		user.setFullName("Rajashekar Subramany");
-		user.setPassword("random");
-		user.setUsername("raj"+new Date().getTime());
-		
-		user = userService.createUser(user);*/
-		
-//		System.out.println(user);
-		
 		return "welcome";
 	}
 }

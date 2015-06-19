@@ -20,73 +20,86 @@ import com.petsupplies.model.product.Product;
 
 @Entity
 @Table(name = "CATEGORIES")
-public class Category {
-   
+public class Category
+{
+
    @Id
    @GeneratedValue(strategy = GenerationType.AUTO)
    private Long id;
-   
+
    @NotBlank
-   @Column(length=100)
+   @Column(length = 100)
    private String name;
 
-   @ManyToOne(optional=true)
-   @JoinColumn(name="parent_id")
+   @ManyToOne(optional = true)
+   @JoinColumn(name = "parent_id")
    private Category parent;
-   
+
    @OneToMany(cascade = CascadeType.ALL, mappedBy = "parent")
    private List<Category> categories = Lists.newArrayList();
-   
+
    @OneToMany(mappedBy = "category")
    private List<Product> products = Lists.newArrayList();
 
-   protected Category() {
-      
+   public Category()
+   {
+
    }
-   
-   public Long getId() {
+
+   public Long getId()
+   {
       return id;
    }
 
-   public void setId(Long id) {
+   public void setId(Long id)
+   {
       this.id = id;
    }
 
-   public String getName() {
+   public String getName()
+   {
       return name;
    }
 
-   public void setName(String name) {
+   public void setName(String name)
+   {
       this.name = name;
    }
 
-   public Category getParent() {
+   public Category getParent()
+   {
       return parent;
    }
 
-   public void setParent(Category parent) {
+   public void setParent(Category parent)
+   {
       this.parent = parent;
    }
 
-   public List<Category> getCategories() {
+   public List<Category> getCategories()
+   {
       return categories;
    }
 
-   public void setCategories(List<Category> categories) {
-      this.categories.clear();      
+   public void setCategories(List<Category> categories)
+   {
+      this.categories.clear();
       this.categories.addAll(categories);
-   }     
+   }
 
-   public List<Product> getProducts() {
+   public List<Product> getProducts()
+   {
       return products;
    }
 
-   public void setProducts(List<Product> products) {
+   public void setProducts(List<Product> products)
+   {
       this.products = products;
    }
 
    @Override
-   public int hashCode() {
+   public int hashCode()
+   {
       final int prime = 31;
       int result = 1;
       result = prime * result + ((name == null) ? 0 : name.hashCode());
@@ -95,36 +108,49 @@ public class Category {
    }
 
    @Override
-   public boolean equals(Object obj) {
-      if (this == obj) {
+   public boolean equals(Object obj)
+   {
+      if (this == obj)
+      {
          return true;
       }
-      if (obj == null) {
+      if (obj == null)
+      {
          return false;
       }
-      if (getClass() != obj.getClass()) {
+      if (getClass() != obj.getClass())
+      {
          return false;
       }
       Category other = (Category) obj;
-      if (name == null) {
-         if (other.name != null) {
+      if (name == null)
+      {
+         if (other.name != null)
+         {
             return false;
          }
-      } else if (!name.equals(other.name)) {
+      }
+      else if (!name.equals(other.name))
+      {
          return false;
       }
-      if (parent == null) {
-         if (other.parent != null) {
+      if (parent == null)
+      {
+         if (other.parent != null)
+         {
             return false;
          }
-      } else if (!parent.equals(other.parent)) {
+      }
+      else if (!parent.equals(other.parent))
+      {
          return false;
       }
       return true;
    }
 
    @Override
-   public String toString() {
+   public String toString()
+   {
       final int maxLen = 2;
       StringBuilder builder = new StringBuilder();
       builder.append("Category [id=");

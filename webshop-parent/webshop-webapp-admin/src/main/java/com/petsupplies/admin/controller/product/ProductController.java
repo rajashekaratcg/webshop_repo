@@ -36,7 +36,6 @@ public class ProductController
    @RequestMapping({ "/", "/welcome" })
    public String welcome(Model model, @RequestParam(value = "pageNum", defaultValue = "0") int pageNum, @RequestParam(value = "pageSize", defaultValue = "10") int pageSize)
    {
-
       model.addAttribute("products", productService.findAll(new PageRequest(pageNum, pageSize)));
 
       return "/product/welcome";
@@ -45,7 +44,6 @@ public class ProductController
    @RequestMapping("/delete")
    public String delete(Model model, @RequestParam(value = "id", required = true) long id)
    {
-
       productService.delete(id);
 
       model.addAttribute("info", "Product deleted successfully!");
@@ -56,8 +54,7 @@ public class ProductController
    @RequestMapping(value = "/edit", method = RequestMethod.GET)
    public String edit(Model model, @RequestParam(value = "id", required = true) long id)
    {
-
-      model.addAttribute("mode", "Create");
+      model.addAttribute("mode", "Edit");
       model.addAttribute("product", productService.findById(id));
       model.addAttribute("categories", categoryService.findAll());
 
@@ -70,6 +67,7 @@ public class ProductController
 
       if (result.hasErrors())
       {
+         model.addAttribute("mode", "Edit");
          model.addAttribute("categories", categoryService.findAll());
          return "/product/edit";
       }
@@ -97,6 +95,7 @@ public class ProductController
 
       if (result.hasErrors())
       {
+         model.addAttribute("mode", "Create");
          model.addAttribute("categories", categoryService.findAll());
          return "/product/edit";
       }

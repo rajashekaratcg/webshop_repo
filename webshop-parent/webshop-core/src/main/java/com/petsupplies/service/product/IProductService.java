@@ -5,15 +5,50 @@ import org.springframework.data.domain.Pageable;
 
 import com.petsupplies.model.product.Product;
 
-public interface IProductService {
+/**
+ * Product related services.
+ *
+ * @author rajassub (c) Jun 19, 2015, Sogeti B.V.
+ */
+public interface IProductService
+{
 
-	Page<Product> findAll(Pageable result);
+   /**
+    * Fetch all products limited to the pagination boundaries provided.
+    * 
+    * @param result details, i.e. page number, page size, etc
+    * @return Paginated list of products.
+    */
+   Page<Product> findAll(Pageable result);
 
-	Product create(Product product);
+   /**
+    * Create a product.
+    * 
+    * @param product
+    * @return persisted product
+    */
+   Product create(Product product);
 
-	void delete(Long id);
+   /**
+    * Delete a product
+    * 
+    * @param id primary key 
+    */
+   void delete(Long id);
 
-	Product findById(Long id);
+   /**
+    * Find product by primary key id
+    * 
+    * @param id primary key 
+    * @return product
+    */
+   Product findById(Long id);
 
-	Product update(Product product);
+   /**
+    * Update a product.
+    * 
+    * @param product to update
+    * @return persisted product
+    */
+   Product update(Product product);
 }

@@ -4,14 +4,48 @@ import java.util.List;
 
 import com.petsupplies.model.category.Category;
 
-public interface ICategoryService {
-	Category create(Category category);
+/**
+ * Category related services.
+ *
+ * @author rajassub (c) Jun 19, 2015, Sogeti B.V.
+ */
+public interface ICategoryService
+{
+   /**
+    * Create a category
+    * 
+    * @param category to create
+    * @return persisted category
+    */
+   Category create(Category category);
 
-	void delete(Long id);
+   /**
+    * Delete a category
+    * 
+    * @param id - primary key of category
+    */
+   void delete(Long id);
 
-	Category findById(Long id);
+   /**
+    * Find a category by id
+    * 
+    * @param id primary key
+    * @return category
+    */
+   Category findById(Long id);
 
-	Category update(Category product);
-	
-	List<Category> findAll();
+   /**
+    * Update a category.
+    * 
+    * @param category to be updated
+    * @return persisted category
+    */
+   Category update(Category category);
+
+   /**
+    * Fetch all categories in system
+    * 
+    * @return list of categories
+    */
+   List<Category> findAll();
 }

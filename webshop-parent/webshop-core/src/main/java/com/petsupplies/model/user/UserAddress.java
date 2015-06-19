@@ -11,7 +11,8 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "USER_ADDRESSES")
-public class UserAddress {
+public class UserAddress
+{
    @Id
    @GeneratedValue(strategy = GenerationType.AUTO)
    private Long id;
@@ -35,68 +36,84 @@ public class UserAddress {
    @JoinColumn(name = "user_id")
    private User user;
 
-   protected UserAddress() {
+   protected UserAddress()
+   {
 
    }
 
-   public Long getId() {
+   public Long getId()
+   {
       return id;
    }
 
-   public void setId(Long id) {
+   public void setId(Long id)
+   {
       this.id = id;
    }
 
-   public String getAddress() {
+   public String getAddress()
+   {
       return address;
    }
 
-   public void setAddress(String address) {
+   public void setAddress(String address)
+   {
       this.address = address;
    }
 
-   public String getCity() {
+   public String getCity()
+   {
       return city;
    }
 
-   public void setCity(String city) {
+   public void setCity(String city)
+   {
       this.city = city;
    }
 
-   public String getState() {
+   public String getState()
+   {
       return state;
    }
 
-   public void setState(String state) {
+   public void setState(String state)
+   {
       this.state = state;
    }
 
-   public String getZipcode() {
+   public String getZipcode()
+   {
       return zipcode;
    }
 
-   public void setZipcode(String zipcode) {
+   public void setZipcode(String zipcode)
+   {
       this.zipcode = zipcode;
    }
 
-   public String getCountry() {
+   public String getCountry()
+   {
       return country;
    }
 
-   public void setCountry(String country) {
+   public void setCountry(String country)
+   {
       this.country = country;
    }
 
-   public User getUser() {
+   public User getUser()
+   {
       return user;
    }
 
-   public void setUser(User user) {
+   public void setUser(User user)
+   {
       this.user = user;
    }
 
    @Override
-   public int hashCode() {
+   public int hashCode()
+   {
       final int prime = 31;
       int result = 1;
       result = prime * result + ((address == null) ? 0 : address.hashCode());
@@ -109,64 +126,93 @@ public class UserAddress {
    }
 
    @Override
-   public boolean equals(Object obj) {
-      if (this == obj) {
+   public boolean equals(Object obj)
+   {
+      if (this == obj)
+      {
          return true;
       }
-      if (obj == null) {
+      if (obj == null)
+      {
          return false;
       }
-      if (getClass() != obj.getClass()) {
+      if (getClass() != obj.getClass())
+      {
          return false;
       }
       UserAddress other = (UserAddress) obj;
-      if (address == null) {
-         if (other.address != null) {
+      if (address == null)
+      {
+         if (other.address != null)
+         {
             return false;
          }
-      } else if (!address.equals(other.address)) {
+      }
+      else if (!address.equals(other.address))
+      {
          return false;
       }
-      if (city == null) {
-         if (other.city != null) {
+      if (city == null)
+      {
+         if (other.city != null)
+         {
             return false;
          }
-      } else if (!city.equals(other.city)) {
+      }
+      else if (!city.equals(other.city))
+      {
          return false;
       }
-      if (country == null) {
-         if (other.country != null) {
+      if (country == null)
+      {
+         if (other.country != null)
+         {
             return false;
          }
-      } else if (!country.equals(other.country)) {
+      }
+      else if (!country.equals(other.country))
+      {
          return false;
       }
-      if (state == null) {
-         if (other.state != null) {
+      if (state == null)
+      {
+         if (other.state != null)
+         {
             return false;
          }
-      } else if (!state.equals(other.state)) {
+      }
+      else if (!state.equals(other.state))
+      {
          return false;
       }
-      if (user == null) {
-         if (other.user != null) {
+      if (user == null)
+      {
+         if (other.user != null)
+         {
             return false;
          }
-      } else if (!user.equals(other.user)) {
+      }
+      else if (!user.equals(other.user))
+      {
          return false;
       }
-      if (zipcode == null) {
-         if (other.zipcode != null) {
+      if (zipcode == null)
+      {
+         if (other.zipcode != null)
+         {
             return false;
          }
-      } else if (!zipcode.equals(other.zipcode)) {
+      }
+      else if (!zipcode.equals(other.zipcode))
+      {
          return false;
       }
       return true;
    }
 
    @Override
-   public String toString() {
+   public String toString()
+   {
       StringBuilder builder = new StringBuilder();
       builder.append("UserAddress [address=");
       builder.append(address);
