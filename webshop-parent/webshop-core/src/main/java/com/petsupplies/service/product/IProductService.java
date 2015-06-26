@@ -22,6 +22,15 @@ public interface IProductService
    Page<Product> findAll(Pageable result);
 
    /**
+    * Fetch all products by Category Id and limited to the pagination boundaries provided.
+    *
+    * @param categoryId category id
+    * @param result details, i.e. page number, page size, etc
+    * @return Paginated list of products.
+    */
+   Page<Product> findByCategoryId(Long categoryId, Pageable result);
+
+   /**
     * Create a product.
     * 
     * @param product
@@ -32,14 +41,14 @@ public interface IProductService
    /**
     * Delete a product
     * 
-    * @param id primary key 
+    * @param id primary key
     */
    void delete(Long id);
 
    /**
     * Find product by primary key id
     * 
-    * @param id primary key 
+    * @param id primary key
     * @return product
     */
    Product findById(Long id);

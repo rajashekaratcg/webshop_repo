@@ -7,6 +7,67 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+</head>
+
+<body>
+	<div class="jumbotron">
+		<p class="lead">${mode} Product</p>
+	</div>
+
+	<div class="row marketing">
+		<!-- Main Content Start  -->
+
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h3 class="panel-title">${mode} Product ${mode == 'Edit' ? product.id : ''}</h3>
+			</div>
+			<div class="panel-body">
+				<form:form commandName="product" methodParam="POST">
+					<table>
+						<tr>
+							<td><spring:message code="name" /></td>
+							<td><form:input path="name" /></td>
+							<td><form:errors path="name" cssClass="error" /></td>
+						</tr>
+						<tr>
+							<td><spring:message code="description" /></td>
+							<td><form:input path="description" /></td>
+							<td><form:errors path="description" cssClass="error" /></td>
+						</tr>
+						<tr>
+							<td><spring:message code="price" /></td>
+							<td><form:input path="price" /></td>
+							<td><form:errors path="price" cssClass="error" /></td>
+						</tr>
+						<tr>
+							<td><spring:message code="category" /></td>
+							<td><form:select path="category">
+									<form:options items="${categories}" itemValue="id"
+										itemLabel="name" />
+								</form:select></td>
+							<td><form:errors path="category" cssClass="error" /></td>
+						</tr>
+						<tr>
+							<td colspan="3"><input type="submit" class="btn btn-default"
+								value="Save" /> <a href="welcome"><button type="button"
+										class="btn btn-default">Cancel</button></a></td>
+						</tr>
+					</table>
+				</form:form>
+			</div>
+		</div>
+
+		<!-- Main Content End  -->
+	</div>
+</body>
+</html>
+
+
+
+<%--
+<!DOCTYPE html>
+<html lang="en">
+<head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -52,7 +113,7 @@
 		</c:if>
 
 		<div class="jumbotron">
-			<p class="lead">${mode}Product</p>
+			<p class="lead">${mode} Product</p>
 		</div>
 
 		<div class="row marketing">
@@ -117,3 +178,4 @@
 	<script src="../scripts/bootstrap/js/bootstrap.min.js"></script>
 </body>
 </html>
+ --%>

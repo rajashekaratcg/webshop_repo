@@ -4,6 +4,59 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+</head>
+
+<body>
+
+		<div class="jumbotron">
+			<p class="lead">${mode} Category</p>
+		</div>
+
+		<div class="row marketing">
+			<!-- Main Content Start  -->
+
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h3 class="panel-title">${mode} Category ${mode == 'Edit' ? category.id : ''}</h3>
+				</div>
+				<div class="panel-body">
+					<form:form commandName="category" methodParam="POST">
+						<table>
+							<tr>
+								<td><spring:message code="name" /></td>
+								<td><form:input path="name" /></td>
+								<td><form:errors path="name" cssClass="error" /></td>
+							</tr>
+							<tr>
+								<td><spring:message code="parent" /></td>
+								<td><form:select path="parent">
+										<form:option value="-1" label="Select" />
+										<form:options items="${categories}" itemValue="id"
+											itemLabel="name" />
+									</form:select></td>
+								<td><form:errors path="parent" cssClass="error" /></td>
+							</tr>
+							<tr>
+								<td colspan="3"><input type="submit"
+									class="btn btn-default" value="Save" /> <a href="welcome"><button
+											type="button" class="btn btn-default">Cancel</button></a></td>
+							</tr>
+						</table>
+					</form:form>
+				</div>
+			</div>
+
+			<!-- Main Content End  -->
+		</div>
+
+</body>
+</html>
+
+<%--
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -52,7 +105,7 @@
 		</c:if>
 
 		<div class="jumbotron">
-			<p class="lead">${mode}Category</p>
+			<p class="lead">${mode} Category</p>
 		</div>
 
 		<div class="row marketing">
@@ -108,7 +161,4 @@
 	<script src="../scripts/bootstrap/js/bootstrap.min.js"></script>
 </body>
 </html>
-
-
-
-
+ --%>

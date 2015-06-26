@@ -3,6 +3,55 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+</head>
+
+<body>
+
+		<div class="jumbotron">
+			<h1>Categories</h1>
+		</div>
+
+		<div class="row marketing">
+
+
+			<a href="create"><button type="button" class="btn btn-default">Create
+					Category</button></a>
+
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th>Id</th>
+						<th>Name</th>
+						<th>Parent</th>
+						<th>action</th>
+					</tr>
+				</thead>
+				<tbody>
+					<c:forEach items="${categories}" var="category">
+						<tr>
+							<td>${category.id}</td>
+							<td>${category.name}</td>
+							<td>${empty category.parent ? '' : category.parent.name}</td>
+							<td><a href="edit?id=${category.id}"><button
+										type="button" class="btn btn-xs btn-default">Edit</button></a> <a
+								href="delete?id=${category.id}"><button type="button"
+										class="btn btn-xs btn-default">Delete</button></a></td>
+						</tr>
+					</c:forEach>
+				</tbody>
+			</table>
+
+
+		</div>
+</body>
+</html>
+
+
+<%--
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -103,3 +152,4 @@
 	<script src="../scripts/bootstrap/js/bootstrap.min.js"></script>
 </body>
 </html>
+ --%>

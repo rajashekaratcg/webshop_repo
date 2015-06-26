@@ -18,6 +18,10 @@ import com.petsupplies.model.user.User;
 public class Role
 {
 
+   public enum Roles {
+      ROLE_USER,ROLE_ADMIN;
+   }
+   
    @Id
    @GeneratedValue(strategy = GenerationType.AUTO)
    private Long id;
@@ -26,7 +30,7 @@ public class Role
    private String name;
 
    @ManyToMany(mappedBy = "roles")
-   public List<User> users = Lists.newArrayList();
+   private List<User> users = Lists.newArrayList();
 
    public Role()
    {

@@ -5,6 +5,65 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+</head>
+
+<body>
+
+	<div class="jumbotron">
+		<h1>Products</h1>
+	</div>
+	<div class="row marketing">
+
+		<a href="create"><button type="button" class="btn btn-default">Create
+				Product</button></a>
+
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th>Id</th>
+					<th>Name</th>
+					<th>Description</th>
+					<th>Price</th>
+					<th>Category</th>
+					<th>action</th>
+				</tr>
+			</thead>
+			<tbody>
+				<c:forEach items="${products.content}" var="product">
+					<tr>
+						<td>${product.id}</td>
+						<td>${product.name}</td>
+						<td>${product.description}</td>
+						<td>${product.price}</td>
+						<td>${product.category.name}</td>
+						<td><a href="edit?id=${product.id}"><button type="button"
+									class="btn btn-xs btn-default">Edit</button></a> <a
+							href="delete?id=${product.id}"><button type="button"
+									class="btn btn-xs btn-default">Delete</button></a></td>
+					</tr>
+				</c:forEach>
+			</tbody>
+		</table>
+		<p>
+			<%-- Page ${products.number+1} of ${products.totalPages}. --%>
+			Total products: ${products.totalElements}
+		</p>
+
+	</div>
+</body>
+</html>
+
+
+
+<%--
+
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -86,7 +145,7 @@
 				</tbody>
 			</table>
 			<p>
-				<%-- Page ${products.number+1} of ${products.totalPages}. --%>
+
 				Total products: ${products.totalElements}
 			</p>
 
@@ -108,3 +167,4 @@
 	<script src="../scripts/bootstrap/js/bootstrap.min.js"></script>
 </body>
 </html>
+ --%>

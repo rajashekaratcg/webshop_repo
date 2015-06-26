@@ -51,4 +51,10 @@ public class ProductService implements IProductService
       return productRepository.save(product);
    }
 
+   @Override
+   public Page<Product> findByCategoryId(Long categoryId, Pageable result)
+   {
+      return productRepository.findByCategory_Id(categoryId, result);
+   }
+
 }

@@ -9,4 +9,6 @@ import com.petsupplies.model.user.User;
 public interface UserRepository extends PagingAndSortingRepository<User, Long>
 {
 
+   User findByUsername(String username);
+
 }

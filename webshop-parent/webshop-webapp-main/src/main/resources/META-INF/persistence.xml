@@ -1,0 +1,25 @@
+
+<persistence xmlns="http://java.sun.com/xml/ns/persistence"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
+	version="2.0">
+
+	<persistence-unit name="petsupplies">
+		<jta-data-source>java:jboss/datasources/ExampleDS</jta-data-source>
+		<class>com.petsupplies.model.category.Category</class>
+		<class>com.petsupplies.model.product.Product</class>
+		<class>com.petsupplies.model.user.User</class>
+		<class>com.petsupplies.model.role.Role</class>
+		<class>com.petsupplies.model.user.UserAddress</class>
+		<class>com.petsupplies.model.user.UserPhone</class>
+		<properties>
+			<property name="hibernate.dialect" value="org.hibernate.dialect.HSQLDialect" />
+			<property name="hibernate.hbm2ddl.auto" value="create" />
+			<property name="hibernate.transaction.jta.platform"
+				value="org.hibernate.service.jta.platform.internal.JBossAppServerJtaPlatform" />
+			<property name="hibernate.transaction.manager_lookup_class"
+				value="org.hibernate.transaction.JBossTransactionManagerLookup" />
+		</properties>
+	</persistence-unit>
+
+</persistence>

@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.petsupplies.model.category.Category;
 import com.petsupplies.model.product.Product;
@@ -42,11 +43,11 @@ public class ProductController
    }
 
    @RequestMapping("/delete")
-   public String delete(Model model, @RequestParam(value = "id", required = true) long id)
+   public String delete(RedirectAttributes redirectAttributes, @RequestParam(value = "id", required = true) long id)
    {
       productService.delete(id);
 
-      model.addAttribute("info", "Product deleted successfully!");
+      redirectAttributes.addAttribute("info", "Product " + id + " deleted successfully!");
 
       return "redirect:/product/welcome";
    }
@@ -62,7 +63,7 @@ public class ProductController
    }
 
    @RequestMapping(value = "/edit", method = RequestMethod.POST)
-   public String edit(Model model, @Valid @ModelAttribute("product") Product product, BindingResult result)
+   public String edit(Model model, RedirectAttributes redirectAttributes, @Valid @ModelAttribute("product") Product product, BindingResult result)
    {
 
       if (result.hasErrors())
@@ -75,6 +76,8 @@ public class ProductController
       {
          productService.update(product);
       }
+
+      redirectAttributes.addAttribute("info", "Product " + product.getName() + " updated successfully!");
 
       return "redirect:/product/welcome";
    }
@@ -90,7 +93,7 @@ public class ProductController
    }
 
    @RequestMapping(value = "/create", method = RequestMethod.POST)
-   public String create(Model model, @Valid @ModelAttribute("product") Product product, BindingResult result)
+   public String create(Model model, RedirectAttributes redirectAttributes, @Valid @ModelAttribute("product") Product product, BindingResult result)
    {
 
       if (result.hasErrors())
@@ -103,6 +106,8 @@ public class ProductController
       {
          productService.create(product);
       }
+
+      redirectAttributes.addAttribute("info", "Product " + product.getName() + " created successfully!");
 
       return "redirect:/product/welcome";
    }

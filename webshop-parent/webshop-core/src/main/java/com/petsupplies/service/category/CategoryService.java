@@ -51,4 +51,10 @@ public class CategoryService implements ICategoryService
       return Lists.newArrayList(categoryRepository.findAll());
    }
 
+   @Override
+   public List<Category> findAllParents()
+   {
+      return categoryRepository.findByParentIsNull();
+   }
+
 }

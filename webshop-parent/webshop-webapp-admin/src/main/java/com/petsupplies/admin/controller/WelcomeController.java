@@ -8,16 +8,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.petsupplies.service.user.IUserService;
 
 @Controller
-public class WelcomeController {
-   
+public class WelcomeController
+{
+
    @Autowired
-   IUserService userService;
+   private IUserService userService;
 
-	@RequestMapping({"/", "/welcome"})
-	public String welcome(Model model) {
-
-		model.addAttribute("welcome", "Hello World!");
-		
-		return "welcome";
-	}
+   @RequestMapping({ "/", "/welcome" })
+   public String welcome(Model model)
+   {
+      return "welcome";
+   }
 }

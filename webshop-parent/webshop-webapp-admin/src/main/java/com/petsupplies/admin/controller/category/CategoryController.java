@@ -16,9 +16,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.petsupplies.model.category.Category;
-import com.petsupplies.model.product.Product;
 import com.petsupplies.service.category.ICategoryService;
 
 @Controller
@@ -39,13 +39,13 @@ public class CategoryController
    }
 
    @RequestMapping("/delete")
-   public String delete(Model model, @RequestParam(value = "id", required = true) long id)
+   public String delete(RedirectAttributes redirectAttributes, @RequestParam(value = "id", required = true) long id)
    {
       // TODO Check if any products have chosen category reference and refuse deletion
 
       categoryService.delete(id);
 
-      model.addAttribute("info", "Category deleted successfully!");
+      redirectAttributes.addAttribute("info", "Category " + id + " deleted successfully!");
       return "redirect:/category/welcome";
    }
 
@@ -60,7 +60,7 @@ public class CategoryController
    }
 
    @RequestMapping(value = "/edit", method = RequestMethod.POST)
-   public String edit(Model model, @Valid @ModelAttribute("category") Category category, BindingResult result)
+   public String edit(Model model, RedirectAttributes redirectAttributes, @Valid @ModelAttribute("category") Category category, BindingResult result)
    {
 
       if (result.hasErrors())
@@ -73,6 +73,8 @@ public class CategoryController
       {
          categoryService.update(category);
       }
+
+      redirectAttributes.addAttribute("info", "Category " + category.getName() + " updated successfully!");
 
       return "redirect:/category/welcome";
    }
@@ -88,7 +90,7 @@ public class CategoryController
    }
 
    @RequestMapping(value = "/create", method = RequestMethod.POST)
-   public String create(Model model, @Valid @ModelAttribute("category") Category category, BindingResult result)
+   public String create(Model model, RedirectAttributes redirectAttributes, @Valid @ModelAttribute("category") Category category, BindingResult result)
    {
       if (result.hasErrors())
       {
@@ -100,6 +102,8 @@ public class CategoryController
       {
          categoryService.create(category);
       }
+
+      redirectAttributes.addAttribute("info", "Category " + category.getName() + " created successfully!");
 
       return "redirect:/category/welcome";
    }

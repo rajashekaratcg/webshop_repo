@@ -48,4 +48,12 @@ public interface ICategoryService
     * @return list of categories
     */
    List<Category> findAll();
+   
+
+   /**
+    * Fetch all parent categories in system
+    * 
+    * @return list of categories
+    */
+   List<Category> findAllParents();
 }
