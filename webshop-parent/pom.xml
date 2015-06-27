@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.petsupplies</groupId>
 	<artifactId>webshop-parent</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.0.2-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<modules>
 		<module>webshop-core</module>
@@ -13,6 +13,9 @@
 	<properties>
 		<spring.version>3.2.13.RELEASE</spring.version>
 		<spring.security.version>3.2.7.RELEASE</spring.security.version>
+		<google.guava.version>18.0</google.guava.version>
+		<slf4j.nop.version>1.7.12</slf4j.nop.version>
+		<junit.version>4.12</junit.version>
 	</properties>
 	<build>
 		<pluginManagement>
@@ -33,28 +36,27 @@
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-core</artifactId>
-			<version>3.2.13.RELEASE</version>
+			<version>${spring.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-expression</artifactId>
-			<version>3.2.13.RELEASE</version>
+			<version>${spring.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-beans</artifactId>
-			<version>3.2.13.RELEASE</version>
+			<version>${spring.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-context</artifactId>
-			<version>3.2.13.RELEASE</version>
+			<version>${spring.version}</version>
 		</dependency>
-
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-tx</artifactId>
-			<version>3.2.13.RELEASE</version>
+			<version>${spring.version}</version>
 		</dependency>
 		
 		<dependency>
@@ -76,27 +78,26 @@
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-test</artifactId>
-			<version>3.2.13.RELEASE</version>
+			<version>${spring.version}</version>
 			<scope>test</scope>
 		</dependency>
 
 		<dependency>
 			<groupId>com.google.guava</groupId>
 			<artifactId>guava</artifactId>
-			<version>18.0</version>
+			<version>${google.guava.version}</version>
 		</dependency>
 		
 		<dependency>
 		  <groupId>org.slf4j</groupId>
 		  <artifactId>slf4j-nop</artifactId>
-		  <version>1.7.12</version>
-		  <!-- <scope>compile</scope> -->
+		  <version>${slf4j.nop.version}</version>
 		</dependency>
 
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
-			<version>4.12</version>
+			<version>${junit.version}</version>
 			<scope>test</scope>
 		</dependency>
 	</dependencies>

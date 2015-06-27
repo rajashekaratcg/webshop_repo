@@ -40,7 +40,7 @@
 					<li role="presentation"><a href="${baseUrl}product/welcome">Products</a></li>
 					<li role="presentation"><a href="${baseUrl}category/welcome">Categories</a></li>
 					<li role="presentation"><a
-						href="javascript:alert('Sorry! Upcoming feature in sprint 02.');">Logout</a></li>
+						href="${baseUrl}user/signout">Sign Out</a></li>
 				</ul>
 			</nav>
 			<h3 class="text-muted">

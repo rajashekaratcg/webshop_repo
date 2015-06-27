@@ -27,9 +27,7 @@ public class UserController
    @RequestMapping({ "/signup", "/user/signup" })
    public String signup(Model model)
    {
-
       model.addAttribute("user", createUser());
-
       return "/user/signup";
    }
 
@@ -44,7 +42,6 @@ public class UserController
    @RequestMapping(value = { "/signup", "/user/signup" }, method = RequestMethod.POST)
    public String signup(Model model, RedirectAttributes redirectAttributes, @Valid @ModelAttribute("user") User user, BindingResult result)
    {
-
       if (result.hasErrors())
       {
          model.addAttribute("user", user);

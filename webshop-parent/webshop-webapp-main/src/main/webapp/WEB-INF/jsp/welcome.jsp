@@ -18,8 +18,7 @@
 		</p>
 		<sec:authorize  access="isAnonymous()">
 		<p>
-			<a class="btn btn-lg btn-success" href="user/signup" role="button">Sign up
-				today</a>
+			<a class="btn btn-lg btn-success" href="user/signup" role="button">Sign up today</a>
 		</p>
 		</sec:authorize>
 	</div>
@@ -31,7 +30,7 @@
 			<h4>Browse</h4>
 			<ul class="list-group">
 				<c:forEach items="${parentCategories}" var="parent">
-					<li class="list-group-item"><a href="product/welcome">${parent.name}</a></li>
+					<li class="list-group-item"><a href="${baseUrl}product/category/${parent.id}">${parent.name}</a></li>					
 				</c:forEach>
 			</ul>
 		</div>

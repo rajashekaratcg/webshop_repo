@@ -2,6 +2,8 @@
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 
 <c:set var="baseUrl" scope="page" value="${(pageContext.request.contextPath)}/"/>
 
@@ -11,7 +13,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Pet Supplies - Welcome to your Pet's Favorite store!</title>
+<title>Pet Supplies Admin</title>
 
 <!-- Bootstrap core CSS -->
 <link href="${baseUrl}styles/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -29,52 +31,37 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
 
-<sitemesh:write property='head'/>    
-
 </head>
 
 <body>
 
 	<div class="container">
-	
-		<div class="header clearfix">
+			<div class="header clearfix">
 			<nav>
 				<ul class="nav nav-pills pull-right">
-	              	<li class="dropdown">
-		                <a href="${baseUrl}product/welcome" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Products <span class="caret"></span></a>
-		                <ul class="dropdown-menu">
-		                	<li><a href="${baseUrl}product/welcome">All</a></li>
-		                	<c:forEach items="${parentCategories}" var="parent">
-							<li><a href="${baseUrl}product/category/${parent.id}">${parent.name}</a></li>
-							</c:forEach>
-		                </ul>
-		              </li>
-		            <li role="presentation"><a href="${baseUrl}">Home</a></li>  
-					<sec:authorize access="isAnonymous()">
-						<li role="presentation"><a href="${baseUrl}/user/signin">Sign In</a></li>	
-					</sec:authorize>
-					<sec:authorize access="isAuthenticated()">
-						<li role="presentation"><a href="${baseUrl}/user/signout">Sign Out</a></li>	
-					</sec:authorize>
+					<%-- <li role="presentation" class="active"><a href="${baseUrl}">Home</a></li> --%>
 				</ul>
 			</nav>
 			<h3 class="text-muted">
-				Pet Supplies
+				Pet Supplies Admin
 			</h3>
-		</div>		 
-		 
-		<c:if test="${not empty param.info}">
-			<div class="alert alert-success" role="alert">${param.info}</div>
-		</c:if>
-		<c:if test="${not empty param.warning}">
-			<div class="alert alert-warning" role="alert">${param.warning}</div>
-		</c:if>		
-		
-		<sitemesh:write property='body'/>
-
-		<footer class="footer">
-			<p>&copy; Rajashekar Subramany 2015</p>
-		</footer>
+		</div>
+	<c:if test="${not empty param.error}">
+		<div class="alert alert-danger" role="alert">Invalid ID or password. Please try again.</div>
+	</c:if>
+	<c:if test="${not empty param.info}">
+		<div class="alert alert-success" role="alert">${param.info}</div>
+	</c:if>
+	
+      <form action="${baseUrl}j_spring_security_check" method="post" class="form-signin">
+        <h2 class="form-signin-heading">Please sign in</h2>
+        <label for="j_username" class="sr-only">Username</label>
+        <input type="text" name="j_username" id="j_username" class="form-control" placeholder="Username" maxlength="100" required autofocus>
+        
+        <label for="j_password" class="sr-only">Password</label>
+        <input type="password" name="j_password" id="j_password" class="form-control" placeholder="Password" maxlength="50" required>       
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>   
+      </form>
 
 	</div>
 	<!-- /container -->
