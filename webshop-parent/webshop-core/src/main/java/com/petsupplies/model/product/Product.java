@@ -4,9 +4,6 @@ import java.math.BigDecimal;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
@@ -15,16 +12,15 @@ import javax.validation.constraints.Min;
 
 import org.hibernate.validator.constraints.NotBlank;
 
+import com.petsupplies.model.AbstractModel;
 import com.petsupplies.model.category.Category;
 
 @Entity
 @Table(name = "PRODUCTS")
-public class Product
+public class Product extends AbstractModel
 {
 
-   @Id
-   @GeneratedValue(strategy = GenerationType.AUTO)
-   private Long id;
+   private static final long serialVersionUID = -7323004865177581551L;
 
    @NotBlank
    @Column(length = 100)
@@ -44,16 +40,6 @@ public class Product
    public Product()
    {
 
-   }
-
-   public Long getId()
-   {
-      return id;
-   }
-
-   public void setId(Long id)
-   {
-      this.id = id;
    }
 
    public String getName()
@@ -152,15 +138,15 @@ public class Product
    {
       StringBuilder builder = new StringBuilder();
       builder.append("Product [id=");
-      builder.append(id);
+      builder.append(this.getId());
       builder.append(", name=");
-      builder.append(name);
+      builder.append(this.name);
       builder.append(", description=");
-      builder.append(description);
+      builder.append(this.description);
       builder.append(", price=");
-      builder.append(price);
+      builder.append(this.price);
       builder.append(", category=");
-      builder.append(category);
+      builder.append(this.category);
       builder.append("]");
       return builder.toString();
    }

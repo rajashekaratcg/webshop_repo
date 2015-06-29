@@ -1,46 +1,22 @@
-package com.petsupplies.model.user;
+package com.petsupplies.model.order;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.Embeddable;
 
-import org.hibernate.validator.constraints.NotEmpty;
+import org.hibernate.validator.constraints.NotBlank;
 
-import com.petsupplies.model.AbstractModel;
-
-@Entity
-@Table(name = "USER_ADDRESSES")
-public class UserAddress extends AbstractModel
+@Embeddable
+public class Address
 {
-
-   private static final long serialVersionUID = 470781850129992058L;
-
-   @NotEmpty
-   @Column(length = 1000)
+   @NotBlank
    private String address;
-
-   @NotEmpty
-   @Column(length = 100)
    private String city;
-
-   @Column(length = 100)
    private String state;
-
-   @NotEmpty
-   @Column(length = 50)
+   @NotBlank
    private String zipcode;
-
-   @NotEmpty
-   @Column(length = 100)
+   @NotBlank
    private String country;
 
-   @ManyToOne(optional = false)
-   @JoinColumn(name = "user_id")
-   private User user;
-
-   public UserAddress()
+   public Address()
    {
 
    }
@@ -95,16 +71,6 @@ public class UserAddress extends AbstractModel
       this.country = country;
    }
 
-   public User getUser()
-   {
-      return user;
-   }
-
-   public void setUser(User user)
-   {
-      this.user = user;
-   }
-
    @Override
    public int hashCode()
    {
@@ -114,7 +80,6 @@ public class UserAddress extends AbstractModel
       result = prime * result + ((city == null) ? 0 : city.hashCode());
       result = prime * result + ((country == null) ? 0 : country.hashCode());
       result = prime * result + ((state == null) ? 0 : state.hashCode());
-      result = prime * result + ((user == null) ? 0 : user.hashCode());
       result = prime * result + ((zipcode == null) ? 0 : zipcode.hashCode());
       return result;
    }
@@ -134,7 +99,7 @@ public class UserAddress extends AbstractModel
       {
          return false;
       }
-      UserAddress other = (UserAddress) obj;
+      Address other = (Address) obj;
       if (address == null)
       {
          if (other.address != null)
@@ -179,17 +144,6 @@ public class UserAddress extends AbstractModel
       {
          return false;
       }
-      if (user == null)
-      {
-         if (other.user != null)
-         {
-            return false;
-         }
-      }
-      else if (!user.equals(other.user))
-      {
-         return false;
-      }
       if (zipcode == null)
       {
          if (other.zipcode != null)
@@ -202,26 +156,6 @@ public class UserAddress extends AbstractModel
          return false;
       }
       return true;
-   }
-
-   @Override
-   public String toString()
-   {
-      StringBuilder builder = new StringBuilder();
-      builder.append("UserAddress [address=");
-      builder.append(address);
-      builder.append(", city=");
-      builder.append(city);
-      builder.append(", state=");
-      builder.append(state);
-      builder.append(", zipcode=");
-      builder.append(zipcode);
-      builder.append(", country=");
-      builder.append(country);
-      builder.append(", user=");
-      builder.append(user);
-      builder.append("]");
-      return builder.toString();
    }
 
 }

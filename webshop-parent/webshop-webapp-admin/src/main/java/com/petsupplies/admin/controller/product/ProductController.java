@@ -113,7 +113,7 @@ public class ProductController
    }
 
    @InitBinder(value = "product")
-   protected void initBinder(HttpServletRequest request, ServletRequestDataBinder binder) throws Exception
+   protected void initBinder(HttpServletRequest request, ServletRequestDataBinder binder)
    {
 
       binder.registerCustomEditor(Category.class, "category", new PropertyEditorSupport()

@@ -8,26 +8,23 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.petsupplies.service.category.ICategoryService;
 import com.petsupplies.service.product.IProductService;
-import com.petsupplies.service.user.IUserService;
 
 @Controller
 public class WelcomeController
 {
-   @Autowired
-   private IUserService userService;
 
    @Autowired
    private ICategoryService categoryService;
-   
+
    @Autowired
    private IProductService productService;
-   
-   @RequestMapping({"/", "/welcome", "/home"})
-   public String welcome(Model model) {
 
+   @RequestMapping({ "/", "/welcome", "/home" })
+   public String welcome(Model model)
+   {
       model.addAttribute("parentCategories", categoryService.findAllParents());
       model.addAttribute("products", productService.findAll(new PageRequest(0, 10)));
-      
+
       return "welcome";
    }
 }

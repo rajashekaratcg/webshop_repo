@@ -4,28 +4,23 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 import com.google.common.collect.Lists;
+import com.petsupplies.model.AbstractModel;
 import com.petsupplies.model.user.User;
 
 @Entity
 @Table(name = "ROLES")
-public class Role
+public class Role extends AbstractModel
 {
+   private static final long serialVersionUID = -6219151565590134617L;
 
    public enum Roles {
       ROLE_USER,ROLE_ADMIN;
    }
    
-   @Id
-   @GeneratedValue(strategy = GenerationType.AUTO)
-   private Long id;
-
    @Column(length = 100)
    private String name;
 
@@ -35,16 +30,6 @@ public class Role
    public Role()
    {
 
-   }
-
-   public Long getId()
-   {
-      return id;
-   }
-
-   public void setId(Long id)
-   {
-      this.id = id;
    }
 
    public String getName()
@@ -106,9 +91,9 @@ public class Role
    {
       StringBuilder builder = new StringBuilder();
       builder.append("Role [id=");
-      builder.append(id);
+      builder.append(this.getId());
       builder.append(", name=");
-      builder.append(name);
+      builder.append(this.name);
       builder.append("]");
       return builder.toString();
    }

@@ -5,9 +5,6 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
@@ -18,15 +15,15 @@ import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import com.google.common.collect.Lists;
+import com.petsupplies.model.AbstractModel;
 import com.petsupplies.model.role.Role;
 
 @Entity
 @Table(name = "USERS")
-public class User
+public class User extends AbstractModel
 {
-   @Id
-   @GeneratedValue(strategy = GenerationType.AUTO)
-   private Long id;
+
+   private static final long serialVersionUID = 1017616854012966905L;
 
    @NotEmpty
    @Column(length = 100, unique = true)
@@ -53,16 +50,6 @@ public class User
 
    public User()
    {
-   }
-
-   public Long getId()
-   {
-      return id;
-   }
-
-   public void setId(Long id)
-   {
-      this.id = id;
    }
 
    public String getUsername()
@@ -180,15 +167,15 @@ public class User
    {
       StringBuilder builder = new StringBuilder();
       builder.append("User [id=");
-      builder.append(id);
+      builder.append(this.getId());
       builder.append(", username=");
-      builder.append(username);
+      builder.append(this.username);
       builder.append(", password=");
-      builder.append(password);
+      builder.append(this.password);
       builder.append(", fullName=");
-      builder.append(fullName);
+      builder.append(this.fullName);
       builder.append(", email=");
-      builder.append(email);
+      builder.append(this.email);
       builder.append("]");
       return builder.toString();
    }

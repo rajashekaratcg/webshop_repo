@@ -5,9 +5,6 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
@@ -16,16 +13,15 @@ import javax.persistence.Table;
 import org.hibernate.validator.constraints.NotBlank;
 
 import com.google.common.collect.Lists;
+import com.petsupplies.model.AbstractModel;
 import com.petsupplies.model.product.Product;
 
 @Entity
 @Table(name = "CATEGORIES")
-public class Category
+public class Category extends AbstractModel
 {
 
-   @Id
-   @GeneratedValue(strategy = GenerationType.AUTO)
-   private Long id;
+   private static final long serialVersionUID = -7675917656100278578L;
 
    @NotBlank
    @Column(length = 100)
@@ -44,67 +40,6 @@ public class Category
    public Category()
    {
 
-   }
-
-   public Long getId()
-   {
-      return id;
-   }
-
-   public void setId(Long id)
-   {
-      this.id = id;
-   }
-
-   public String getName()
-   {
-      return name;
-   }
-
-   public void setName(String name)
-   {
-      this.name = name;
-   }
-
-   public Category getParent()
-   {
-      return parent;
-   }
-
-   public void setParent(Category parent)
-   {
-      this.parent = parent;
-   }
-
-   public List<Category> getCategories()
-   {
-      return categories;
-   }
-
-   public void setCategories(List<Category> categories)
-   {
-      this.categories.clear();
-      this.categories.addAll(categories);
-   }
-
-   public List<Product> getProducts()
-   {
-      return products;
-   }
-
-   public void setProducts(List<Product> products)
-   {
-      this.products = products;
-   }
-
-   @Override
-   public int hashCode()
-   {
-      final int prime = 31;
-      int result = 1;
-      result = prime * result + ((name == null) ? 0 : name.hashCode());
-      result = prime * result + ((parent == null) ? 0 : parent.hashCode());
-      return result;
    }
 
    @Override
@@ -148,13 +83,64 @@ public class Category
       return true;
    }
 
+   public List<Category> getCategories()
+   {
+      return categories;
+   }
+
+   public String getName()
+   {
+      return name;
+   }
+
+   public Category getParent()
+   {
+      return parent;
+   }
+
+   public List<Product> getProducts()
+   {
+      return products;
+   }
+
+   @Override
+   public int hashCode()
+   {
+      final int prime = 31;
+      int result = 1;
+      result = prime * result + ((name == null) ? 0 : name.hashCode());
+      result = prime * result + ((parent == null) ? 0 : parent.hashCode());
+      return result;
+   }
+
+   public void setCategories(List<Category> categories)
+   {
+      this.categories.clear();
+      this.categories.addAll(categories);
+   }
+
+   public void setName(String name)
+   {
+      this.name = name;
+   }
+
+   public void setParent(Category parent)
+   {
+      this.parent = parent;
+   }
+
+   public void setProducts(List<Product> products)
+   {
+      this.products = products;
+   }
+
    @Override
    public String toString()
    {
       final int maxLen = 2;
       StringBuilder builder = new StringBuilder();
       builder.append("Category [id=");
-      builder.append(id);
+      builder.append(this.getId());
       builder.append(", name=");
       builder.append(name);
       builder.append(", parent=");

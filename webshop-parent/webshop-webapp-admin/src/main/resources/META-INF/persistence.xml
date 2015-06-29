@@ -6,7 +6,7 @@
 
 	<persistence-unit name="petsupplies">
 		<jta-data-source>java:jboss/datasources/ExampleDS</jta-data-source>
-		<class>com.petsupplies.model.category.Category</class>
+		<class>com.petsupplies.model.Category</class>
 		<class>com.petsupplies.model.product.Product</class>
 		<class>com.petsupplies.model.user.User</class>
 		<class>com.petsupplies.model.role.Role</class>

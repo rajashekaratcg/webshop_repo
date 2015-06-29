@@ -16,6 +16,7 @@
 		<google.guava.version>18.0</google.guava.version>
 		<slf4j.nop.version>1.7.12</slf4j.nop.version>
 		<junit.version>4.12</junit.version>
+		<petsupplies.version>0.0.2-SNAPSHOT</petsupplies.version>
 	</properties>
 	<build>
 		<pluginManagement>
@@ -33,6 +34,8 @@
 	</build>
 
 	<dependencies>
+
+		<!-- Spring -->
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-core</artifactId>
@@ -53,52 +56,37 @@
 			<artifactId>spring-context</artifactId>
 			<version>${spring.version}</version>
 		</dependency>
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-tx</artifactId>
-			<version>${spring.version}</version>
-		</dependency>
-		
-		<dependency>
-	        <groupId>org.springframework.security</groupId>
-	        <artifactId>spring-security-web</artifactId>
-	        <version>${spring.security.version}</version>
-		</dependency>		
-		<dependency>
-	        <groupId>org.springframework.security</groupId>
-	        <artifactId>spring-security-config</artifactId>
-	        <version>${spring.security.version}</version>
-		</dependency>					
-		<dependency>
-	        <groupId>org.springframework.security</groupId>
-	        <artifactId>spring-security-taglibs</artifactId>
-	        <version>${spring.security.version}</version>
-		</dependency>			
 
+		<!-- Spring Security -->
 		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-test</artifactId>
-			<version>${spring.version}</version>
-			<scope>test</scope>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-web</artifactId>
+			<version>${spring.security.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-config</artifactId>
+			<version>${spring.security.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-taglibs</artifactId>
+			<version>${spring.security.version}</version>
 		</dependency>
 
+		<!-- Google Guava Utility library -->
 		<dependency>
 			<groupId>com.google.guava</groupId>
 			<artifactId>guava</artifactId>
 			<version>${google.guava.version}</version>
 		</dependency>
-		
+
+		<!-- slf4j Logging -->
 		<dependency>
-		  <groupId>org.slf4j</groupId>
-		  <artifactId>slf4j-nop</artifactId>
-		  <version>${slf4j.nop.version}</version>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-nop</artifactId>
+			<version>${slf4j.nop.version}</version>
 		</dependency>
 
-		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<version>${junit.version}</version>
-			<scope>test</scope>
-		</dependency>
 	</dependencies>
 </project>
