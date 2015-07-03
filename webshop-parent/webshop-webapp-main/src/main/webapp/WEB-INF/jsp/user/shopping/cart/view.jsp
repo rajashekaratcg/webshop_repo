@@ -10,37 +10,36 @@
 <body>
 
 	<div class="jumbotron">
-		<h1>Products</h1>
+		<h1>Your <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> Shopping Cart!</h1>
 	</div>
 	<div class="row marketing">
 
-		
+
 
 		<table class="table table-hover">
 			<thead>
 				<tr>
 
-					<th>Products</th>
+					<th>Product</th>
+					<th>Qty</th>
 					<th>Price</th>
-					<th>Category</th>
 				</tr>
 			</thead>
 			<tbody>
-				<c:forEach items="${products.content}" var="product">
+				<c:forEach items="${shoppingCart.items}" var="shoppingCart">
 					<tr>
 						<td>
-						<p class="lead"><a href="${baseUrl}product/${product.id}">${product.name}</a></p>
-						<p>${product.description}</p>
+						<p class="lead"><a href="${baseUrl}product/${product.id}">${shoppingCart.product.name}</a></p>
 						</td>
-						<td>${product.price}</td>
-						<td>${product.category.name}</td>
+						<td>${shoppingCart.quantity}</td>
+						<td>${shoppingCart.product.price}</td>
 					</tr>
 				</c:forEach>
 			</tbody>
 		</table>
-		<p>
-			Total products: ${products.totalElements}
-		</p>
+		<h3>
+			Total Amount: &#8364; ${shoppingCart.amount}.
+		</h3>
 
 	</div>
 </body>

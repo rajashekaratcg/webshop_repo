@@ -41,7 +41,7 @@
 				<c:forEach items="${products.content}" var="product">
 					<li class="list-group-item">
 						<p>
-							<a href="product/welcome">${product.name}</a> - &#8364;
+							<a href="${baseUrl}product/${product.id}">${product.name}</a> - &#8364;
 							${product.price}
 						</p>
 						<p><c:out value="${fn:substring(product.description,0,100)}"/>${fn:length(product.description)>100 ? '...' : ''}</p>

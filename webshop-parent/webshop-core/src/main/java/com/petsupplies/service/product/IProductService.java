@@ -1,5 +1,8 @@
 package com.petsupplies.service.product;
 
+import java.util.Collection;
+import java.util.List;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -31,6 +34,15 @@ public interface IProductService
    Page<Product> findByCategoryId(Long categoryId, Pageable result);
 
    /**
+    * Search by Name or Description. Ignores case.
+    *
+    * @param nameOrDescription search term used for both name and description search
+    * @param result details, i.e. page number, page size, etc
+    * @return Paginated list of products.
+    */
+   Page<Product> searchByNameOrDescription(String nameOrDescription, Pageable result);
+
+   /**
     * Create a product.
     * 
     * @param product
@@ -54,10 +66,19 @@ public interface IProductService
    Product findById(Long id);
 
    /**
+    * Find products by primary key ids
+    * 
+    * @param ids list of primary key ids
+    * @return product
+    */
+   List<Product> findById(Collection<Long> ids);
+
+   /**
     * Update a product.
     * 
     * @param product to update
     * @return persisted product
     */
    Product update(Product product);
+
 }

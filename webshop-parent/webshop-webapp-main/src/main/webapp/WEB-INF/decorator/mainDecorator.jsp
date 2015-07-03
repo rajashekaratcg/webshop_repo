@@ -31,6 +31,11 @@
 
 <sitemesh:write property='head'/>    
 
+<script>
+  $('#searchButton').on('click', function () {
+    $('#searchForm').submit();
+  })
+</script>
 </head>
 
 <body>
@@ -56,18 +61,37 @@
 					<sec:authorize access="isAuthenticated()">
 						<li role="presentation"><a href="${baseUrl}/user/signout">Sign Out</a></li>	
 					</sec:authorize>
+					
+					<li role="presentation"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span><span class="badge">${shoppingCart.items.size()}</span></li>
 				</ul>
 			</nav>
-			<h3 class="text-muted">
-				Pet Supplies
-			</h3>
+			<div class="row">
+			  <div class="col-lg-6">
+				<h3 class="">
+					Pet Supplies
+					<small>All things pets!</small>
+				</h3>
+			  </div>
+			  <div class="col-lg-6">
+			  <form class="form-inline" action="${baseUrl}product/search" method="get" id="searchForm">
+			    <div class="input-group">
+			      <input type="text" class="form-control" name="q" placeholder="Search for..." value="${param.q}">
+			      <span class="input-group-btn">
+			      	 <button class="btn btn-default" type="button" id="searchButton">Go!</button>
+			      </span>
+			    </div>
+			    </form>
+			  </div>
+			</div>
 		</div>		 
 		 
-		<c:if test="${not empty param.info}">
+		<c:if test="${not empty param.info || not empty info}">
 			<div class="alert alert-success" role="alert">${param.info}</div>
+			<div class="alert alert-success" role="alert">${info}</div>
 		</c:if>
-		<c:if test="${not empty param.warning}">
+		<c:if test="${not empty param.warning || not empty warning}">
 			<div class="alert alert-warning" role="alert">${param.warning}</div>
+			<div class="alert alert-warning" role="alert">${warning}</div>
 		</c:if>		
 		
 		<sitemesh:write property='body'/>

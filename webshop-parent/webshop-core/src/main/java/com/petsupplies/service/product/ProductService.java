@@ -1,5 +1,8 @@
 package com.petsupplies.service.product;
 
+import java.util.Collection;
+import java.util.List;
+
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +10,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import com.google.common.collect.Lists;
 import com.petsupplies.model.product.Product;
 import com.petsupplies.repository.product.ProductRepository;
 
@@ -54,7 +58,19 @@ public class ProductService implements IProductService
    @Override
    public Page<Product> findByCategoryId(Long categoryId, Pageable result)
    {
-      return productRepository.findByCategory_Id(categoryId, result);
+      return productRepository.findByCategoryId(categoryId, result);
+   }
+
+   @Override
+   public Page<Product> searchByNameOrDescription(String nameOrDescription, Pageable result)
+   {
+      return productRepository.findByNameContainingOrDescriptionContainingAllIgnoreCase(nameOrDescription, nameOrDescription, result);
+   }
+
+   @Override
+   public List<Product> findById(Collection<Long> ids)
+   {
+      return Lists.<Product>newArrayList(productRepository.findAll(ids));
    }
 
 }

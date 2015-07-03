@@ -15,6 +15,6 @@ public class ErrorController
    
    @RequestMapping({"/403"})
    public String unauthorized(){      
-      return "/common/error/404";
+      return "/common/error/403";
    }    
 }

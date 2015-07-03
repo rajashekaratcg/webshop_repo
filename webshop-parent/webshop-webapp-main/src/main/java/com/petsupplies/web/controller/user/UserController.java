@@ -1,5 +1,7 @@
 package com.petsupplies.web.controller.user;
 
+import static com.petsupplies.web.controller.common.util.ViewPath.USER_SIGNUP;
+
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
@@ -10,25 +12,29 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.google.common.collect.Lists;
+import com.petsupplies.model.product.Product;
 import com.petsupplies.model.user.User;
 import com.petsupplies.model.user.UserAddress;
 import com.petsupplies.model.user.UserPhone;
 import com.petsupplies.service.user.IUserService;
+import com.petsupplies.web.controller.AbstractController;
 
 @Controller
-public class UserController
+public class UserController extends AbstractController
 {
+
    @Autowired
    private IUserService userService;
 
-   @RequestMapping({ "/signup", "/user/signup" })
+   @RequestMapping({ "/signup", USER_SIGNUP })
    public String signup(Model model)
    {
       model.addAttribute("user", createUser());
-      return "/user/signup";
+      return USER_SIGNUP;
    }
 
    private User createUser()
@@ -39,13 +45,13 @@ public class UserController
       return user;
    }
 
-   @RequestMapping(value = { "/signup", "/user/signup" }, method = RequestMethod.POST)
+   @RequestMapping(value = { "/signup", USER_SIGNUP }, method = RequestMethod.POST)
    public String signup(Model model, RedirectAttributes redirectAttributes, @Valid @ModelAttribute("user") User user, BindingResult result)
    {
       if (result.hasErrors())
       {
          model.addAttribute("user", user);
-         return "/user/signup";
+         return USER_SIGNUP;
       }
       else
       {
@@ -90,5 +96,38 @@ public class UserController
    public String profile(Model model)
    {
       return "/welcome";
+   }
+
+   @RequestMapping({ "/user/shopping/cart", "/user/shopping" })
+   public String shoppingCart(Model model)
+   {
+      model.addAttribute("shoppingCart", shoppingCart);
+      return "/user/shopping/cart/view";
+   }
+
+   @RequestMapping(value = "/user/shopping/cart/add", method = RequestMethod.POST)
+   public String addToShoppingCart(@RequestParam(value = "productId", required = true) long productId, @RequestParam(value = "quantity", required = true) int quantity, RedirectAttributes model)
+   {
+      Product product = productService.findById(productId);
+      if (product != null)
+      {
+         shoppingCart.addItem(product, quantity);
+         model.addAttribute("info", "Product added to your shopping cart successfully!");
+      }
+      else
+      {
+         model.addAttribute("info", "Invalid product added!");
+      }
+
+      return "redirect:/product/welcome";
+   }
+
+   @RequestMapping(value = "/user/shopping/cart/remove", method = RequestMethod.POST)
+   public String removeFromShoppingCart(@RequestParam(value = "productId", required = true) long productId, RedirectAttributes model)
+   {
+      shoppingCart.removeItem(productId);
+      model.addAttribute("info", "Product removed from your shopping cart successfully!");
+
+      return "redirect:/user/shopping/cart";
    }
 }

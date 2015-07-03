@@ -1,30 +1,24 @@
 package com.petsupplies.web.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.PageRequest;
+import static com.petsupplies.web.controller.product.ProductController.ATTRIB_PRODUCTS;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.petsupplies.service.category.ICategoryService;
-import com.petsupplies.service.product.IProductService;
-
 @Controller
-public class WelcomeController
+public class WelcomeController extends AbstractController
 {
 
-   @Autowired
-   private ICategoryService categoryService;
+   
 
-   @Autowired
-   private IProductService productService;
-
-   @RequestMapping({ "/", "/welcome", "/home" })
+   @RequestMapping({ ROOT, WELCOME })
    public String welcome(Model model)
    {
-      model.addAttribute("parentCategories", categoryService.findAllParents());
-      model.addAttribute("products", productService.findAll(new PageRequest(0, 10)));
+      populateCommonAttributes(model);
+      model.addAttribute(ATTRIB_PRODUCTS, productService.findAll(createPageRequest()));
 
-      return "welcome";
+      return WELCOME;
    }
+
 }

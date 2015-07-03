@@ -12,7 +12,7 @@
 <body>
 
 <h3>Sign Up!</h3>
-<form:form commandName="user" methodParam="POST" cssStyle="form-horizontal">
+<form:form commandName="user" methodParam="POST" cssClass="form-horizontal">
 	<form:errors path="*" cssClass="alert alert-danger" element="div" />
 	
 	<div class="form-group">
@@ -112,7 +112,7 @@
 	<div class="form-group">
 		<div class="col-sm-offset-2 col-sm-10">
 			<button type="submit" class="btn btn-primary">Create account</button>
-			<a href="${pageContext.request.contextPath}/"><button class="btn btn-default">Later...</button></a>
+			<a href="${pageContext.request.contextPath}/" class="btn btn-default">Later...</a>
 		</div>
 	</div>
 </form:form>

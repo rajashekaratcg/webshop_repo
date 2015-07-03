@@ -10,6 +10,8 @@ import com.petsupplies.model.product.Product;
 @Repository
 public interface ProductRepository extends PagingAndSortingRepository<Product, Long>
 {
-   Page<Product> findByCategory_Id(Long categoryId, Pageable result);
+   Page<Product> findByCategoryId(Long categoryId, Pageable result);
+   
+   Page<Product> findByNameContainingOrDescriptionContainingAllIgnoreCase(String nameOrDescription, String nameOrDescription2, Pageable result);
 
 }

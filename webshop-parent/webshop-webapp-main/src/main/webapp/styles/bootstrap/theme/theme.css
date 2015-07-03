@@ -82,7 +82,7 @@ body {
 	color: red;
 	font-weight: bold;
 }
-
+/* 
 input {
 	margin: 5px;
 	height: 30px;
@@ -101,7 +101,7 @@ select {
 form .btn {
 	margin: 5px;
 } 
-
+ */
 /* Sign in form styles */
 
 .form-signin {

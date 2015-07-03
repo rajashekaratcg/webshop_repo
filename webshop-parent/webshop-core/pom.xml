@@ -47,7 +47,14 @@
 			<artifactId>hibernate-entitymanager</artifactId>
 			<version>${hibernate.entitymanager}</version>
 		</dependency>
-
+		
+		<!-- Utility libs: Apache Commons  -->
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+  			<artifactId>commons-lang3</artifactId>
+  			<version>3.4</version>
+  		</dependency>
+  
 		<!-- Testing -->
 		<dependency>
 			<groupId>org.springframework</groupId>
