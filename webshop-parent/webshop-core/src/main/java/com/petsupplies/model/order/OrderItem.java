@@ -36,6 +36,46 @@ public class OrderItem extends AbstractModel
    @Min(value = 0)
    private BigDecimal amount;
 
+   public Order getOrder()
+   {
+      return order;
+   }
+
+   public void setOrder(Order order)
+   {
+      this.order = order;
+   }
+
+   public Product getProduct()
+   {
+      return product;
+   }
+
+   public void setProduct(Product product)
+   {
+      this.product = product;
+   }
+
+   public Integer getQuantity()
+   {
+      return quantity;
+   }
+
+   public void setQuantity(Integer quantity)
+   {
+      this.quantity = quantity;
+   }
+
+   public BigDecimal getAmount()
+   {
+      return amount;
+   }
+
+   public void setAmount(BigDecimal amount)
+   {
+      this.amount = amount;
+   }
+
    @Override
    public int hashCode()
    {

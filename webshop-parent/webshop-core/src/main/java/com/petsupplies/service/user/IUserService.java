@@ -19,7 +19,14 @@ public interface IUserService
     * @return
     */
    User createUser(User user);
-
+   
+   /**
+    * Find user by username.
+    * 
+    * @param username 
+    * @return User
+    */
+   User findByUsername(String username);
    
    /**
     * Fetches all users in system.
@@ -27,4 +34,5 @@ public interface IUserService
     * @return list of users
     */
    List<User> findAllUsers();
+   
 }

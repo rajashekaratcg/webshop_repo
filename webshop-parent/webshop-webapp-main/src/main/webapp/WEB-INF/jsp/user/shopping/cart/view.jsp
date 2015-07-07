@@ -22,24 +22,29 @@
 
 					<th>Product</th>
 					<th>Qty</th>
-					<th>Price</th>
+					<th colspan="2">Price</th>
+					
 				</tr>
 			</thead>
 			<tbody>
 				<c:forEach items="${shoppingCart.items}" var="shoppingCart">
 					<tr>
 						<td>
-						<p class="lead"><a href="${baseUrl}product/${product.id}">${shoppingCart.product.name}</a></p>
+						<p class="lead"><a href="${baseUrl}product/${shoppingCart.product.id}">${shoppingCart.product.name}</a></p>
 						</td>
 						<td>${shoppingCart.quantity}</td>
 						<td>${shoppingCart.product.price}</td>
+						<td><form action="${baseUrl}user/shopping/cart/remove" method="post"><input type="hidden" name="productId" value="${shoppingCart.product.id}"><input type="submit" value="Remove" class="btn btn-warning btn-xs"></form></td>
 					</tr>
 				</c:forEach>
 			</tbody>
 		</table>
 		<h3>
-			Total Amount: &#8364; ${shoppingCart.amount}.
+			Total Amount: &#8364; ${shoppingCart.amount}
 		</h3>
+		<p>
+			<a href="${baseUrl}user/shopping/cart/checkout" class="btn btn-primary">Checkout &raquo;</a>
+		</p>
 
 	</div>
 </body>

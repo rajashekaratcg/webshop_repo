@@ -29,15 +29,23 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
 
-<sitemesh:write property='head'/>    
+  
 
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script src="${baseUrl}scripts/bootstrap/js/ie10-viewport-bug-workaround.js"></script>
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="${baseUrl}scripts/jquery.min.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="${baseUrl}scripts/bootstrap/js/bootstrap.min.js"></script>
 <script>
 $(document).ready(function(){
   $('#searchButton').on('click', function () {
     $('#searchForm').submit();
   });
 });
-</script>
+</script>	
+
+<sitemesh:write property='head'/>  
 </head>
 
 <body>
@@ -61,7 +69,16 @@ $(document).ready(function(){
 						<li role="presentation"><a href="${baseUrl}/user/signin">Sign In</a></li>	
 					</sec:authorize>
 					<sec:authorize access="isAuthenticated()">
-						<li role="presentation"><a href="${baseUrl}/user/signout">Sign Out</a></li>	
+						<li class="dropdown">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Account <span class="caret"></span></a>
+							<ul class="dropdown-menu">
+								<%-- <li><a href="${baseUrl}/user/order">Orders</a></li> --%>
+								<li><a href="${baseUrl}/user/shopping/cart">Shopping Cart</a></li>
+								<li><a href="${baseUrl}/user/signout">Sign Out</a></li>	
+							</ul>
+						</li>
+					
+						
 					</sec:authorize>
 					
 					<li role="presentation"><a href="${baseUrl}/user/shopping/cart" title="Shopping cart!"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span><span class="badge" id="shoppingCartItemsTotal"><%-- ${shoppingCart.items.size()} --%></span></a></li>
@@ -87,12 +104,17 @@ $(document).ready(function(){
 			</div>
 		</div>		 
 		 
-		<c:if test="${not empty param.info || not empty info}">
+		<c:if test="${not empty param.info}">
 			<div class="alert alert-success" role="alert">${param.info}</div>
+		</c:if>
+		<c:if test="${not empty param.warning}">
+			<div class="alert alert-warning" role="alert">${param.warning}</div>
+		</c:if>	
+				 
+		<c:if test="${not empty info}">
 			<div class="alert alert-success" role="alert">${info}</div>
 		</c:if>
-		<c:if test="${not empty param.warning || not empty warning}">
-			<div class="alert alert-warning" role="alert">${param.warning}</div>
+		<c:if test="${not empty warning}">
 			<div class="alert alert-warning" role="alert">${warning}</div>
 		</c:if>		
 		
@@ -105,12 +127,5 @@ $(document).ready(function(){
 	</div>
 	<!-- /container -->
 
-
-	<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-	<script src="${baseUrl}scripts/bootstrap/js/ie10-viewport-bug-workaround.js"></script>
-	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-	<script src="${baseUrl}scripts/jquery.min.js"></script>
-	<!-- Include all compiled plugins (below), or include individual files as needed -->
-	<script src="${baseUrl}scripts/bootstrap/js/bootstrap.min.js"></script>
 </body>
 </html>

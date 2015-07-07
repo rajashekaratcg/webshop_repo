@@ -1,5 +1,7 @@
 package com.petsupplies.service.order;
 
+import com.petsupplies.model.order.Order;
+
 /**
  * Orders related services.
  *
@@ -7,5 +9,5 @@ package com.petsupplies.service.order;
  */ 
 public interface IOrderService
 {
-
+   void placeOrder(Order order);
 }

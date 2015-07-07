@@ -18,8 +18,6 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-import org.apache.commons.lang3.StringUtils;
-
 import com.google.common.collect.Lists;
 import com.petsupplies.model.AbstractModel;
 import com.petsupplies.model.user.User;
