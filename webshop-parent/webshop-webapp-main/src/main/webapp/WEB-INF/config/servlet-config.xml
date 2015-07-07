@@ -8,7 +8,7 @@
 
 
 	<mvc:annotation-driven />
-	<context:component-scan base-package="com.petsupplies.web" />
+	<context:component-scan base-package="com.petsupplies.web.controller,com.petsupplies.web.model" />
 
 	<mvc:resources location="/styles/" mapping="styles/**" />
 	<mvc:resources location="/scripts/" mapping="scripts/**" />

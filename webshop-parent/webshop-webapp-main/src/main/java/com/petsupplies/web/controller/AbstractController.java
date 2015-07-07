@@ -21,7 +21,7 @@ public abstract class AbstractController
    @Autowired
    protected IProductService productService;
 
-   @Autowired
+   @Autowired()
    protected ShoppingCart shoppingCart;
 
    protected void populateParentCategories(Model model)

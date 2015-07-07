@@ -22,6 +22,7 @@ import com.petsupplies.model.user.UserAddress;
 import com.petsupplies.model.user.UserPhone;
 import com.petsupplies.service.user.IUserService;
 import com.petsupplies.web.controller.AbstractController;
+import com.petsupplies.web.model.user.ShoppingCart;
 
 @Controller
 public class UserController extends AbstractController
@@ -29,7 +30,7 @@ public class UserController extends AbstractController
 
    @Autowired
    private IUserService userService;
-
+   
    @RequestMapping({ "/signup", USER_SIGNUP })
    public String signup(Model model)
    {

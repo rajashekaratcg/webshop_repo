@@ -10,7 +10,7 @@
 <body>
 
 	<div class="jumbotron">
-		<h1>Your <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> Shopping Cart!</h1>
+		<h3>Your <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> Shopping Cart!</h3>
 	</div>
 	<div class="row marketing">
 

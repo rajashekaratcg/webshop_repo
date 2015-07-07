@@ -32,9 +32,11 @@
 <sitemesh:write property='head'/>    
 
 <script>
+$(document).ready(function(){
   $('#searchButton').on('click', function () {
     $('#searchForm').submit();
-  })
+  });
+});
 </script>
 </head>
 
@@ -62,7 +64,7 @@
 						<li role="presentation"><a href="${baseUrl}/user/signout">Sign Out</a></li>	
 					</sec:authorize>
 					
-					<li role="presentation"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span><span class="badge">${shoppingCart.items.size()}</span></li>
+					<li role="presentation"><a href="${baseUrl}/user/shopping/cart" title="Shopping cart!"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span><span class="badge" id="shoppingCartItemsTotal"><%-- ${shoppingCart.items.size()} --%></span></a></li>
 				</ul>
 			</nav>
 			<div class="row">
