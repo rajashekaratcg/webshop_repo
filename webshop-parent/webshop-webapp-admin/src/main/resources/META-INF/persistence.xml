@@ -6,12 +6,15 @@
 
 	<persistence-unit name="petsupplies">
 		<jta-data-source>java:jboss/datasources/ExampleDS</jta-data-source>
-		<class>com.petsupplies.model.Category</class>
+		<class>com.petsupplies.model.category.Category</class>
 		<class>com.petsupplies.model.product.Product</class>
 		<class>com.petsupplies.model.user.User</class>
 		<class>com.petsupplies.model.role.Role</class>
 		<class>com.petsupplies.model.user.UserAddress</class>
 		<class>com.petsupplies.model.user.UserPhone</class>
+ 		<class>com.petsupplies.model.order.Address</class>
+ 		<class>com.petsupplies.model.order.Order</class>
+ 		<class>com.petsupplies.model.order.OrderItem</class>	
 		<properties>
 			<property name="hibernate.dialect" value="org.hibernate.dialect.HSQLDialect" />
 			<property name="hibernate.hbm2ddl.auto" value="create" />

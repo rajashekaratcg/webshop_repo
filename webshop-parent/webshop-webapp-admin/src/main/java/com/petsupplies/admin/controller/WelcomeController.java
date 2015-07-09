@@ -1,15 +1,15 @@
 package com.petsupplies.admin.controller;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-public class WelcomeController
+public class WelcomeController extends AbstractController
 {
-   @RequestMapping({ "/", "/welcome" })
-   public String welcome(Model model)
+
+   @RequestMapping({ ROOT, WELCOME })
+   public String welcome()
    {
-      return "welcome";
+      return WELCOME;
    }
 }

@@ -78,7 +78,7 @@ public class UserController extends AbstractController
 
    @Autowired
    private IUserService userService;
-   
+
    @Autowired
    private IOrderService orderService;
 
@@ -229,7 +229,6 @@ public class UserController extends AbstractController
    @RequestMapping(value = USER_SHOPPING_CART_CHECKOUT, method = RequestMethod.POST)
    public String checkoutStep2(Model model, RedirectAttributes redirectModel, Locale locale, @Valid @ModelAttribute(ATTRIB_ORDER) Order order, BindingResult result)
    {
-      System.out.println(order);
 
       String username = SecurityContextHolder.getContext().getAuthentication().getName();
       User user = userService.findByUsername(username);
@@ -251,8 +250,8 @@ public class UserController extends AbstractController
       order.setOrderStatus(Order.Status.PLACED);
       order.setUser(user);
 
-      orderService.placeOrder(order);
-      
+      orderService.placeOrder(order);      
+
       redirectModel.addAttribute(ATTRIB_INFO, "Order placed successfully!");
       return REDIRECT$_WELCOME;
    }

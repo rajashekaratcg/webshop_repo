@@ -1,6 +1,7 @@
 package com.petsupplies.admin.controller.product;
 
 import java.beans.PropertyEditorSupport;
+import java.util.Locale;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
@@ -18,15 +19,29 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.petsupplies.admin.controller.AbstractController;
+import com.petsupplies.admin.controller.category.CategoryController;
 import com.petsupplies.model.category.Category;
 import com.petsupplies.model.product.Product;
 import com.petsupplies.service.category.ICategoryService;
 import com.petsupplies.service.product.IProductService;
 
 @Controller
-@RequestMapping("/product")
-public class ProductController
+@RequestMapping(ProductController.PRODUCT)
+public class ProductController extends AbstractController
 {
+
+   public static final String PRODUCT_EDIT = "/product/edit";
+   public static final String REDIRECT$_PRODUCT_WELCOME = "redirect:/product/welcome";
+   public static final String PRODUCT = "/product";
+   public static final String PRODUCT_WELCOME = "/product/welcome";
+
+   public static final String ATTRIB_PRODUCTS = "products";
+   public static final String ATTRIB_PRODUCT = "product";
+
+   public static final String MSG_PRODUCT_DELETED_SUCCESSFULLY = "msg.productDeletedSuccessfully";
+   public static final String MSG_PRODUCT_CREATED_SUCCESSFULLY = "msg.productCreatedSuccessfully";
+   public static final String MSG_PRODUCT_UPDATED_SUCCESSFULLY = "msg.productUpdatedSuccessfully";
 
    @Autowired
    private IProductService productService;
@@ -34,89 +49,89 @@ public class ProductController
    @Autowired
    private ICategoryService categoryService;
 
-   @RequestMapping({ "/", "/welcome" })
-   public String welcome(Model model, @RequestParam(value = "pageNum", defaultValue = "0") int pageNum, @RequestParam(value = "pageSize", defaultValue = "10") int pageSize)
+   @RequestMapping({ ROOT, WELCOME })
+   public String welcome(Model model, @RequestParam(value = PARAM_PAGE_NUM, defaultValue = PARAM_0) int pageNum, @RequestParam(value = PARAM_PAGE_SIZE, defaultValue = PARAM_10) int pageSize)
    {
-      model.addAttribute("products", productService.findAll(new PageRequest(pageNum, pageSize)));
+      model.addAttribute(ATTRIB_PRODUCTS, productService.findAll(new PageRequest(pageNum, pageSize)));
 
-      return "/product/welcome";
+      return PRODUCT_WELCOME;
    }
 
-   @RequestMapping("/delete")
-   public String delete(RedirectAttributes redirectAttributes, @RequestParam(value = "id", required = true) long id)
+   @RequestMapping(DELETE)
+   public String delete(RedirectAttributes redirectAttributes, Locale locale, @RequestParam(value = PARAM_ID, required = true) long id)
    {
       productService.delete(id);
 
-      redirectAttributes.addAttribute("info", "Product " + id + " deleted successfully!");
+      setInfoMsg(MSG_PRODUCT_DELETED_SUCCESSFULLY, locale, redirectAttributes);
 
-      return "redirect:/product/welcome";
+      return REDIRECT$_PRODUCT_WELCOME;
    }
 
-   @RequestMapping(value = "/edit", method = RequestMethod.GET)
-   public String edit(Model model, @RequestParam(value = "id", required = true) long id)
+   @RequestMapping(value = EDIT, method = RequestMethod.GET)
+   public String edit(Model model, @RequestParam(value = PARAM_ID, required = true) long id)
    {
-      model.addAttribute("mode", "Edit");
-      model.addAttribute("product", productService.findById(id));
-      model.addAttribute("categories", categoryService.findAll());
+      model.addAttribute(ATTRIB_MODE, ATTRIB_EDIT);
+      model.addAttribute(ATTRIB_PRODUCT, productService.findById(id));
+      model.addAttribute(CategoryController.ATTRIB_CATEGORIES, categoryService.findAll());
 
-      return "/product/edit";
+      return PRODUCT_EDIT;
    }
 
-   @RequestMapping(value = "/edit", method = RequestMethod.POST)
-   public String edit(Model model, RedirectAttributes redirectAttributes, @Valid @ModelAttribute("product") Product product, BindingResult result)
+   @RequestMapping(value = EDIT, method = RequestMethod.POST)
+   public String edit(Model model, Locale locale, RedirectAttributes redirectAttributes, @Valid @ModelAttribute(ATTRIB_PRODUCT) Product product, BindingResult result)
    {
 
       if (result.hasErrors())
       {
-         model.addAttribute("mode", "Edit");
-         model.addAttribute("categories", categoryService.findAll());
-         return "/product/edit";
+         model.addAttribute(ATTRIB_MODE, ATTRIB_EDIT);
+         model.addAttribute(CategoryController.ATTRIB_CATEGORIES, categoryService.findAll());
+         return PRODUCT_EDIT;
       }
       else
       {
          productService.update(product);
       }
 
-      redirectAttributes.addAttribute("info", "Product " + product.getName() + " updated successfully!");
+      setInfoMsg(MSG_PRODUCT_UPDATED_SUCCESSFULLY, locale, model);
 
-      return "redirect:/product/welcome";
+      return REDIRECT$_PRODUCT_WELCOME;
    }
 
-   @RequestMapping(value = "/create", method = RequestMethod.GET)
+   @RequestMapping(value = CREATE, method = RequestMethod.GET)
    public String create(Model model)
    {
-      model.addAttribute("mode", "Create");
-      model.addAttribute("product", new Product());
-      model.addAttribute("categories", categoryService.findAll());
+      model.addAttribute(ATTRIB_MODE, ATTRIB_CREATE);
+      model.addAttribute(ATTRIB_PRODUCT, new Product());
+      model.addAttribute(CategoryController.ATTRIB_CATEGORIES, categoryService.findAll());
 
-      return "/product/edit";
+      return PRODUCT_EDIT;
    }
 
-   @RequestMapping(value = "/create", method = RequestMethod.POST)
-   public String create(Model model, RedirectAttributes redirectAttributes, @Valid @ModelAttribute("product") Product product, BindingResult result)
+   @RequestMapping(value = CREATE, method = RequestMethod.POST)
+   public String create(Model model, Locale locale, RedirectAttributes redirectAttributes, @Valid @ModelAttribute(ATTRIB_PRODUCT) Product product, BindingResult result)
    {
 
       if (result.hasErrors())
       {
-         model.addAttribute("mode", "Create");
-         model.addAttribute("categories", categoryService.findAll());
-         return "/product/edit";
+         model.addAttribute(ATTRIB_MODE, ATTRIB_CREATE);
+         model.addAttribute(CategoryController.ATTRIB_CATEGORIES, categoryService.findAll());
+         return PRODUCT_EDIT;
       }
       else
       {
          productService.create(product);
       }
 
-      redirectAttributes.addAttribute("info", "Product " + product.getName() + " created successfully!");
+      setInfoMsg(MSG_PRODUCT_CREATED_SUCCESSFULLY, locale, redirectAttributes);
 
-      return "redirect:/product/welcome";
+      return REDIRECT$_PRODUCT_WELCOME;
    }
 
-   @InitBinder(value = "product")
+   @InitBinder(value = ATTRIB_PRODUCT)
    protected void initBinder(HttpServletRequest request, ServletRequestDataBinder binder)
    {
 
-      binder.registerCustomEditor(Category.class, "category", new PropertyEditorSupport()
+      binder.registerCustomEditor(Category.class, CategoryController.ATTRIB_CATEGORY, new PropertyEditorSupport()
          {
             @Override
             public void setAsText(String text)

@@ -20,13 +20,16 @@ import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 
 /**
- * An abstract super class entity. 
+ * An abstract super class entity.
  *
  * @author rajassub (c) Jun 29, 2015, Sogeti B.V.
  */
 @MappedSuperclass
 public abstract class AbstractModel implements Serializable
 {
+
+   private static final long serialVersionUID = 3372053097793611469L;
+
    @Id
    @GeneratedValue(strategy = GenerationType.AUTO)
    private Long id;

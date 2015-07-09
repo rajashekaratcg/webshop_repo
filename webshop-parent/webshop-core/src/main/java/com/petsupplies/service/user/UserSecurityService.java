@@ -20,13 +20,11 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.google.common.collect.Lists;
 import com.petsupplies.model.role.Role;
-import com.petsupplies.repository.category.RoleRepository;
 import com.petsupplies.repository.user.UserRepository;
 
 /**
@@ -42,7 +40,7 @@ public class UserSecurityService implements UserDetailsService
    private UserRepository userRepository;
 
    @Override
-   public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException
+   public UserDetails loadUserByUsername(String username)
    {
       com.petsupplies.model.user.User user = userRepository.findByUsername(username);
       boolean isEnabled = true;
