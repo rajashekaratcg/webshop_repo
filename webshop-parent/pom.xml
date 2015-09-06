@@ -9,6 +9,7 @@
 		<module>webshop-core</module>
 		<module>webshop-webapp-main</module>
 		<module>webshop-webapp-admin</module>
+		<module>webshop-webapp-admin-spa</module>
 	</modules>
 	<properties>
 		<spring.version>3.2.13.RELEASE</spring.version>
