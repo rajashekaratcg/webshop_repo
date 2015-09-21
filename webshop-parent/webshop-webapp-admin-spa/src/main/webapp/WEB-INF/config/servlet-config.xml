@@ -24,6 +24,18 @@
 		class="org.springframework.web.servlet.i18n.SessionLocaleResolver"
 		p:defaultLocale="en" /> -->
 
+	<bean id="objectMapper"
+		class="org.springframework.http.converter.json.Jackson2ObjectMapperFactoryBean"
+		p:indentOutput="true" p:simpleDateFormat="yyyy-MM-dd'T'HH:mm:ss.SSSZ"></bean>
+		<mvc:annotation-driven conversion-service="conversionService">
+			<mvc:message-converters>
+				<bean
+					class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+					<property name="objectMapper" ref="objectMapper" />
+				</bean>
+			</mvc:message-converters>
+		</mvc:annotation-driven>
+
 	<bean
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver"
 		p:prefix="/WEB-INF/jsp/" p:suffix=".jsp" />
