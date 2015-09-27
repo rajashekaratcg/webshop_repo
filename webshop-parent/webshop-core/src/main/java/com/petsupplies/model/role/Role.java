@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.google.common.collect.Lists;
 import com.petsupplies.model.AbstractModel;
 import com.petsupplies.model.user.User;
@@ -24,6 +25,7 @@ public class Role extends AbstractModel
    @Column(length = 100)
    private String name;
 
+   @JsonIgnore
    @ManyToMany(mappedBy = "roles")
    private List<User> users = Lists.newArrayList();
 

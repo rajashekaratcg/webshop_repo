@@ -8,6 +8,7 @@ import javax.persistence.Table;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.petsupplies.model.AbstractModel;
 
 @Entity
@@ -36,6 +37,7 @@ public class UserAddress extends AbstractModel
    @Column(length = 100)
    private String country;
 
+   @JsonIgnore
    @ManyToOne(optional = false)
    @JoinColumn(name = "user_id")
    private User user;

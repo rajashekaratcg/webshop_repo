@@ -12,6 +12,7 @@ import javax.persistence.Table;
 
 import org.hibernate.validator.constraints.NotBlank;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.google.common.collect.Lists;
 import com.petsupplies.model.AbstractModel;
 import com.petsupplies.model.product.Product;
@@ -31,9 +32,11 @@ public class Category extends AbstractModel
    @JoinColumn(name = "parent_id")
    private Category parent;
 
+   @JsonIgnore
    @OneToMany(cascade = CascadeType.ALL, mappedBy = "parent")
    private List<Category> categories = Lists.newArrayList();
 
+   @JsonIgnore
    @OneToMany(mappedBy = "category")
    private List<Product> products = Lists.newArrayList();
 

@@ -1,0 +1,40 @@
+
+	<div class="jumbotron">
+		<h1>Products</h1>
+	</div>
+	<div class="row marketing">
+
+		<a href="create"><button type="button" class="btn btn-default">Create
+				Product</button></a>
+
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th>Id</th>
+					<th>Name</th>
+					<th>Description</th>
+					<th>Price</th>
+					<th>Category</th>
+					<th>action</th>
+				</tr>
+			</thead>
+			<tbody>
+					<tr ng-repeat="product in vm.products">
+						<td>{{product.id}}</td>
+						<td>{{product.name}}</td>
+						<td>{{product.description}}</td>
+						<td>{{product.price}}</td>
+						<td>{{product.category.name}}</td>
+						<td><a href="edit?id={{product.id}}"><button type="button"
+									class="btn btn-xs btn-default">Edit</button></a> <a
+							href="delete?id={{product.id}}"><button type="button"
+									class="btn btn-xs btn-default">Delete</button></a></td>
+					</tr>
+
+			</tbody>
+		</table>
+		<p>
+			Total products: {{products.totalElements}}
+		</p>
+
+	</div>
